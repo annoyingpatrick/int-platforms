@@ -430,8 +430,8 @@ def influx_client(args):
     else:
         host = args.host
         port = 8086
-    user = 'int'
-    password = 'gn4intp4'
+    user = 'example_influx_admin_user'
+    password = 'example_influx_admin_password'
     dbname = args.database
 
     client = InfluxDBClient(host, port, user, password, dbname)
@@ -478,6 +478,7 @@ if __name__ == "__main__":
     args = parse_params()
     if args.debug_mode > 0:
         logger.setLevel(logging.DEBUG)
+    print("hello world from int_collector_influx.py")
     start_udp_server(args)
 
 # SELECT mean("node_delay")  FROM int_telemetry  WHERE ("srcip" =~ /^$srcip$/ AND "dstip" =~ /^$dstip$/ AND  "node_index" =~ /^$hop$/) AND $timeFilter  GROUP BY time($interval) fill(null)

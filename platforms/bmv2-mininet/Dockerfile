@@ -16,6 +16,7 @@ ENV NET_TOOLS iputils-arping \
               traceroute \
               tshark \ 
               golang-go \
+              tcpreplay \
               bridge-utils
               
 ENV MININET_DEPS automake \
@@ -38,6 +39,7 @@ ENV MININET_DEPS automake \
                  pyflakes \
                  pylint \
                  python3-pexpect \
+                 tcpreplay \
                  python3-setuptools
 ENV DEV_TOOLS nano
 
@@ -50,9 +52,11 @@ RUN apt-get update && \
 #RUN pip install construct
 # Fix to get tcpdump working
 RUN mv /usr/sbin/tcpdump /usr/bin/tcpdump
+RUN mv /usr/sbin/tcpreplay /usr/bin/tcpdump
 
 RUN pip install ipaddr scapy psutil
 RUN pip install influxdb
+RUN apt-get install tcpreplay
 # Install mininet.
 COPY docker/third-party /third-party
 RUN dpkg -i /third-party/python3-six_1.10.0-3_all.deb
