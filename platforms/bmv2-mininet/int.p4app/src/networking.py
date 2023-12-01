@@ -73,13 +73,12 @@ def start_int_collector(influxdb):
         stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
     )
     # Modified by Patrick
-    collector_cmd = 'ip netns exec ns_int python3 /tmp/utils/int_collector_influx.py -i 6000 -H 192.168.0.1:8086 -d 0 &> /dev/null'
+    collector_cmd = 'ip netns exec ns_int python3 /tmp/utils/int_collector_influx.py -i 6000 -H 192.168.0.1:8086 -d 1 &> /dev/null'
     #collector_cmd = 'ip netns exec ns_int python3 /tmp/utils/int_collector_prometheus.py -i 6000 -H 192.168.0.1:8086 -d 0 &> /dev/null'
     print(collector_cmd)
     os.system(collector_cmd)
-    #test_cmd = 'python3 /tmp/utils/test_hello.py'
-    #print(test_cmd)
-    #os.system(test_cmd)
+    print('sudo apt-get install tcpreplay')
+    os.system('sudo apt-get install tcpreplay')
     
     
 def create_internet_connectivity():
